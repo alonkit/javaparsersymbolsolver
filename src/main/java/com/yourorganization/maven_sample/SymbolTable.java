@@ -2,12 +2,9 @@ package com.yourorganization.maven_sample;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
 import com.github.javaparser.ast.Node;
 
-public class SymbolTable{
+public class SymbolTable implements ScopeFuncInterface<Node>{
     private LinkedList<Hashtable<String, Node>> table;
 
     public SymbolTable(){
@@ -27,6 +24,11 @@ public class SymbolTable{
         return ret;
     }
 
+    public void insertDeclaration(String name, Node n){
+        table.getFirst().put(name, n);
+    }
+
+
     public void pushScope(){
         table.add(new Hashtable<String, Node>());
     }
@@ -35,4 +37,25 @@ public class SymbolTable{
         table.removeLast();
     }
 
+
+
+    @Override
+    public void pre_scope(Node n) {
+        pushScope();
+        
+    }
+
+    @Override
+    public void post_scope(Node n) {
+        popScope();
+        
+    }
+
+    @Override
+    public void mid_scope(Node n) {
+       //fill?
+        
+    }
+
+    
 }

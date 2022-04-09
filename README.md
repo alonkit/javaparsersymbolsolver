@@ -26,3 +26,20 @@ Once you have configured your project in your IDE you can build it from there. H
 * `mvn install`: it will do everything `mvn test` does and then if everything looks file it will install the library or the application into your local maven repository (typically under <USER FOLDER>/.m2). In this way you could use this library from other projects you want to build on the same machine
 
 If you need more information please take a look at this [quick tutorial](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
+
+# graph features:
+
+- method declarations
+- function params
+- local variables
+- overriden methods?
+- type declarations
+- nested type declarations?
+- field declarations
+- 
+
+
+# my comments:
+
+-public SymbolReference<ResolvedMethodDeclaration> solveMethod (153) javaParserTypeDeclarationAdapter
+- Context.solveSymbol(name);
