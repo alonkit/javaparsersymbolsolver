@@ -1,5 +1,5 @@
 digraph {
-n0 [label="root (CompilationUnit)"];
+n0 [label="root (derived.java)"];
 n1 [label="imports"];
 n0 -> n1;
 n2 [label="import (ImportDeclaration)"];
@@ -158,7 +158,7 @@ n78 [label="modifier (Modifier)"];
 n77 -> n78;
 n79 [label="keyword='PUBLIC'"];
 n78 -> n79;
-n80 [label="root (CompilationUnit)"];
+n80 [label="root (base.java)"];
 n81 [label="types"];
 n80 -> n81;
 n82 [label="type (ClassOrInterfaceDeclaration)"];
@@ -377,12 +377,13 @@ n188 [label="modifier (Modifier)"];
 n187 -> n188;
 n189 [label="keyword='PUBLIC'"];
 n188 -> n189;
-n127 -> n87 [color = "red"]
-n37 -> n96 [color = "red"]
-n41 -> n23 [color = "red"]
-n57 -> n23 [color = "red"]
 n132 -> n87 [color = "red"]
 n153 -> n159 [color = "red"]
+n33 -> n111 [color = "red"]
+n41 -> n23 [color = "red"]
+n57 -> n23 [color = "red"]
+n127 -> n87 [color = "red"]
+n37 -> n96 [color = "red"]
 n117 -> n181 [color = "red"]
 n171 -> n159 [color = "red"]
 {rank = same; n0; n80; }

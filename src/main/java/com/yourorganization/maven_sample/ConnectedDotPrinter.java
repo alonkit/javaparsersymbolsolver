@@ -8,6 +8,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.HashMap;
 
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.comments.LineComment;
@@ -19,6 +20,15 @@ public class ConnectedDotPrinter {
     private HashMap<node_keys,String> nodeToName;
     private int nodeCount;
     private final boolean outputNodeType;
+
+    public static String color(Class<?> cls){
+        String name = cls.getName();
+        return "red" ;
+        // (name.equals("MethodDeclaration"))? "pink":
+        // (name.equals("VariableDeclarationExpr"))? "green":
+        // (name.equals("Parameter"))? "blue": "red";
+    
+    }
 
     public ConnectedDotPrinter(boolean outputNodeType,  HashMap<node_keys,node_keys> connections){
         this.outputNodeType = outputNodeType;
@@ -43,7 +53,7 @@ public class ConnectedDotPrinter {
             if(k_name != null && v_name != null){
                 System.out.println('x');
 
-                output.append("\n" + k_name + " -> "+ v_name+ " [color = \"red\"]");
+                output.append("\n" + k_name + " -> "+ v_name+ " [color = \""+color(v.c) +"\"]");
             }
         });
         heads.append("}");
@@ -87,9 +97,17 @@ public class ConnectedDotPrinter {
 
         }
 
-        if (outputNodeType)
-            builder.append("\n" + ndName + " [label=\"" + escape(name) + " (" + metaModel.getTypeName()
-                    + ")\"];");
+        if (outputNodeType){
+            String typeName = metaModel.getTypeName();
+            if(node instanceof CompilationUnit){
+                builder.append("\n" + ndName + " [label=\"" + escape(name) + " (" + ((CompilationUnit) node).getStorage().get().getFileName()  
+                + ")\"];");
+            }else{
+                builder.append("\n" + ndName + " [label=\"" + escape(name) + " (" + typeName  
+                + ")\"];");
+            }
+            
+        }
         else
             builder.append("\n" + ndName + " [label=\"" + escape(name) + "\"];");
 
